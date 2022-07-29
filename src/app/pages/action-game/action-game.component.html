@@ -1,0 +1,99 @@
+<section>
+ 
+    <app-loading></app-loading>
+
+    <ng-container *ngIf="isError; else formTemplate">
+        <h1 class="erroResponse">{{isError}}</h1>
+    </ng-container>
+   
+  
+        
+           
+      
+    <ng-template #formTemplate>
+        <div class="container">
+        <form [formGroup]="createForm" (ngSubmit)="onSaveGame()" #form="ngForm">
+            <div class="row">
+                <div class="box-img">
+                    <ng-container *ngIf="game?.photos && game.photos.length > 0; else imageGallery ">
+                        <img src="{{game.photos[0].url}}" style="width: 100%;" alt="">
+                    </ng-container>
+                    <ng-template #imageGallery>
+                        <img src="assets/images/default-img.png" style="width: 100%;" alt="">
+                    </ng-template>
+                    <!--  -->
+                    <div formArrayName="photos">
+                        <div *ngFor="let photo of photos.controls; let i=index">
+                          
+                              <div formGroupName="{{i}}">
+                                <mat-form-field appearance="outline">
+                                    <mat-label >Photos</mat-label>
+                                    <input id="photos-{{ i }}"  type="text" formControlName="url"  matInput placeholder="Insert photo">
+                                    <mat-icon (click)="addPhotos()" matSuffix matTooltipPosition = "right"  matTooltip="insert photo">add_circle</mat-icon>
+                                </mat-form-field>
+                              </div>
+                          
+                        </div>
+                      </div>
+                      <!--  -->
+                </div>
+                <div class="box-forms">
+                        <mat-form-field appearance="outline">
+                            <mat-label >Enter Game Name</mat-label>
+                            <input [readonly]="isAddMode" formControlName="title" matInput placeholder="Enter Game Name">
+                        </mat-form-field>
+                   
+                        <mat-form-field appearance="outline">
+                            <mat-label color="primary" >Select Geners</mat-label>
+                            <mat-select  color="primary"   [multiple]="true"  formControlName="genres"  [compareWith]="compararSelectOptions" >
+                                <mat-option  *ngFor="let key of keys" [value]="genresEnum[key]" >
+                                    {{genresEnum[key]}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Select Platforms</mat-label>
+                            <mat-select [multiple]="true"  formControlName="platforms" [compareWith]="compararSelectOptions">
+                                <mat-option *ngFor="let key of platformkeys" [value]="platformEnun[key]">
+                                    {{platformEnun[key]}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                          <div formArrayName="tags">
+                            <div *ngFor="let alias of tags.controls; let i=index">
+                                <mat-form-field appearance="outline">
+                                    <mat-label >Tags</mat-label>
+                                    <input id="alias-{{ i }}" type="text" [formControlName]="i" matInput placeholder="Select Tags">
+                                    <mat-icon (click)="addTags()" matSuffix matTooltipPosition = "right"  matTooltip="Add tags">add_circle</mat-icon>
+                                </mat-form-field>
+                            </div>
+                          </div>
+                     
+                        <mat-form-field appearance="outline">
+                          <mat-label>Mediun price</mat-label>
+                          <input formControlName="mediumPrice" matInput placeholder="Enter mediun price">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                          <mat-label>Release Year</mat-label>
+                          <input formControlName="releaseYear" matInput placeholder="Enter release Year">
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Description</mat-label>
+                            <textarea rows="10" formControlName="description" matInput></textarea>
+                        </mat-form-field>
+                      
+                    
+                    <button class="button-custom" mat-raised-button  type="reset">Cancelar</button>
+                    <button class="button-custom" mat-raised-button color="warn" type="submit" >Salvar Game</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </ng-template>
+        
+   
+</section>  

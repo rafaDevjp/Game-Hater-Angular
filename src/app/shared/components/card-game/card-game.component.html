@@ -1,0 +1,30 @@
+<a id="link-title" routerLink='/detail-game/{{games._id}}' title="{{games.title}}">
+
+  <mat-card class="example-card">
+    <ng-container style="padding:0px;" *ngIf="games.photos && games.photos.length === 0 ; else templateName">
+      <img mat-card-image class="img-responsive" src="assets/images/default-img.png" alt="">
+    </ng-container>
+    <ng-template #templateName>
+      <img mat-card-image class="img-responsive" src="{{games.photos[0].url}}" alt="{{games.title}}">
+    </ng-template>
+
+    <small>{{games.title | slice:0:30}}</small>
+
+    <mat-card-content>
+      <ng-container *ngIf="games.mediumPrice !== undefined ; else price">
+        <span>Price: {{games.mediumPrice | currency: 'USD'}}</span>
+      </ng-container>
+      <ng-template #price>
+        <span>Price: <small style="color: rgb(255, 38, 0);">Uninformed</small></span>
+      </ng-template>
+      <ng-container *ngIf="games.totalVotes !== 0;else rating">
+
+        <h5>Avaliações: {{games.rating | number:'1.1'}} / {{games.totalVotes}}</h5>
+      </ng-container>
+      <ng-template #rating>
+        <h6 style="color: rgb(255, 208, 0);">This hasn't been rated yet</h6>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+
+</a>

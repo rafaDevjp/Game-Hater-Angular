@@ -1,0 +1,20 @@
+
+
+.footer-custom{
+    max-width: 100%;
+    height: 100px;
+    background-color: rgb(44, 44, 44);
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // border: solid 1px blue;
+
+}
+
+.text-footer{
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgb(161, 161, 161);
+}

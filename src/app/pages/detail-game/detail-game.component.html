@@ -1,0 +1,54 @@
+<section>
+
+    
+    <app-loading></app-loading>
+    
+    <ng-container *ngIf="this.isError; else detail">
+        <h1 class="erroResponse">{{isError}}</h1>
+    </ng-container>
+    <ng-template #detail>
+        <div class="container">
+            <div class="row">
+                <div class="box-img">
+                    <ng-container *ngIf="game?.photos && game.photos.length > 0; else defaultImage">
+                        <img src="{{game.photos[0].url}}" style="width: 100%; height: 400px;" alt="">
+                    </ng-container>
+                    <ng-template #defaultImage>
+                        <img src="assets/images/default-img.png" style="width: 100%;height: 400px;" alt="">
+                    </ng-template>
+                </div>
+                <div class="box-informs">
+                    
+                       <p><span>Title:</span> {{game?.title}}</p>
+                       <p><span>Médium:</span>{{game?.rating}}</p>
+                       <p><span>Genres:</span> {{game?.genres}} </p>
+                       <p><span>Platforms:</span> {{game?.platforms}} </p>
+                       <p><span>Tags:</span> {{game?.tags}} </p>
+                       <p><span>Mediun price:</span> {{game?.mediumPrice}} </p>
+                       <p><span>Release Year:</span> {{game?.releaseYear}} </p>
+                       <p><span>TotalVotes</span> {{game?.totalVotes}} 
+                        <span *ngIf="token"><button mat-raised-button color="warn" >Rating Games</button></span>
+                       </p>
+                       <p >
+                        
+                       </p>
+                </div>
+                    <div style="width:100% ;"><h2 class="">Description:</h2></div>
+                <div class="box-description">
+                    {{game?.description}}
+                </div>
+                <ng-container *ngIf="token && game?._id; else buttons">
+                    <button class="button-custom" mat-raised-button (click)="deleteGame(game._id)" color="warn" >Delete Game</button>
+                    <button class="button-custom" mat-raised-button  routerLink='/actions-edite/{{game._id}}'>Update Game</button>
+                </ng-container>
+                <ng-template #buttons>
+                    <button class="button-custom" mat-raised-button color="warn" routerLink="/" >Voltar</button>
+                </ng-template>
+            </div>
+        </div>
+        
+    </ng-template>
+
+    
+   
+</section>  

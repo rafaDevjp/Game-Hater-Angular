@@ -1,0 +1,59 @@
+
+
+<section>
+    <div >
+        <app-loading></app-loading>
+    </div>
+    <ng-container *ngIf=" token; else carrousel ">
+        <div class="games-managers">
+            <div class="">
+                <h1>GAMES</h1>
+                <span id="subtitle">Games manager Portal </span>
+            </div>
+            <div class="seach-position">
+                <div class="input-search">
+                    <label > 
+                        <input matInput type="text"  name="filter" [(ngModel)]="filter"  placeholder="Search..." autofocus maxlength="255">
+                        <button *ngIf="filter" matSuffix mat-icon-button aria-label="Clear" (click)="filter=''">
+                            <mat-icon color="warn">close</mat-icon>
+                        </button>
+                    </label>
+                </div>
+                <button  mat-raised-button color="warn" (click)="gameAction()">
+                    New Game
+                </button>
+            </div>
+        </div>
+    </ng-container>
+    <!--  -->
+    <ng-template #carrousel>
+           <div *ngIf="!filter" class="" style="width: 86%;   margin: 0px auto;">
+            <app-carrousel></app-carrousel>
+           </div>
+    </ng-template>
+    <!--  -->
+    <ng-container *ngIf="!!filter && filter.length > 2">
+        <div class="games-managers">
+            <div class="">
+                <h1>Buscando por: <span id="seachResult" class="seachResult">{{filter}}</span></h1>
+            </div>
+        </div>
+    </ng-container>
+
+    <!--  -->
+    <ng-container *ngIf="isError">
+        <h1 class="erroResponse">{{isError}}</h1>
+    </ng-container>
+
+    <!--  -->
+    <div class="list-cards">
+        <app-card-game *ngFor="let game of gameList  | filterGames: filter" [games]="game"> </app-card-game>
+        <ng-container *ngIf="">
+            Deu ruin
+        </ng-container>
+    </div>
+    <div class="box-pagination">
+        <button mat-flat-button color="warn">Loanding Games</button>
+    </div>
+</section>
+

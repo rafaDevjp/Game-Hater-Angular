@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'TinDinApp';
-}
+
+  
+
+
+}//END_CLASS

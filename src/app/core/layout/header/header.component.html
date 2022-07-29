@@ -1,0 +1,57 @@
+<div class="header-container">
+    <mat-toolbar color="warn">
+
+        <div class="example-spacer">
+          <!-- <span>TinDinApp</span> -->
+          <span style="cursor: pointer ;" [routerLink]="['/']">
+              <img src="assets/images/porquinho_branco_horizontal.svg" style="width:2.5rem; padding: 2px" alt="" srcset="">
+              <img src="assets/images/tindin_branco_horizontal.svg" class="logo-name" alt="" srcset="">
+          </span>
+          <!-- <span class="example-spacer"></span> -->
+      
+          <ng-container *ngIf="!isSessionStart && !token; else boxSpace">
+              <div class="search-box">
+                  <label for="search">
+                      <input matInput type="text" [(ngModel)]="search" id="search">
+                      <button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="getSearch(search='')">
+                          <mat-icon color="warn">close</mat-icon>
+                      </button>
+                  </label>
+                  <button color="warn" (click)="getSearch(search)" class="seach-button">
+                      Search
+                  </button>
+              </div>
+          </ng-container>
+          <ng-template #boxSpace>
+              <div style="flex: 1 1 aoute"></div>
+          </ng-template>
+      
+          
+      
+          <button  mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" [matMenuTriggerFor]="menu" style="top:5px">
+              <mat-icon class="mat-icon">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" >
+              <ng-container *ngIf="isSessionStart || token; else loginButton">
+      
+                  <button mat-menu-item  (click)="logout()">
+                      <mat-icon color="warn">logout</mat-icon> Logout
+                  </button>
+      
+              </ng-container>
+              <ng-template #loginButton>
+      
+                  <button mat-menu-item  (click)="login()">
+                      <mat-icon color="warn">person</mat-icon> Login
+                  </button>
+                          
+      
+              </ng-template>
+              
+      
+             
+          </mat-menu>
+      
+        </div>
+      </mat-toolbar>
+</div>

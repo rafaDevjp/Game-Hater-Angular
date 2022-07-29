@@ -1,0 +1,44 @@
+
+
+
+<section class="">
+    <div class="login-container">
+        <mat-card  class="box-login">
+             
+            <div class="box-login-title">
+
+                <div class="login-title">
+                    <h2>SING IN</h2>
+                    
+                    <ng-container *ngIf="errorStatus; else message">
+                        <h4 style="color: rgb(243, 45, 45);" ><strong>{{errorStatus}}</strong></h4>
+                    </ng-container>
+                    <ng-template #message>
+                        <small>Insert Your Account Information</small>
+                    </ng-template>
+
+                 </div>
+                <form [formGroup]="loginForm " (ngSubmit)="onSubmit()" #form="ngForm">
+                  
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Login</mat-label>
+                            <input type="text" formControlName="email" required matInput placeholder="Login">
+                        </mat-form-field>
+                    </p>
+                    <p>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password"  required formControlName="password" matInput placeholder="Password">
+                        </mat-form-field>
+                    </p>
+
+                    <button id="submitButton" mat-raised-button color="warn" type="submit" [disabled]="!form.form.valid">
+                        Login Your Account
+                    </button>
+                    
+                </form>
+            </div>
+        </mat-card>
+    </div>
+</section>  
