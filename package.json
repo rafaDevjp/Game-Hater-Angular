@@ -1,6 +1,10 @@
 {
   "name": "tin-din-app",
   "version": "0.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
