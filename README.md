@@ -4,7 +4,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+
+## Heroku deployed Run
+
+Para acessar esta aplicação diretamente da web clique no link:  `https://tindin-app.herokuapp.com/`
 
 ## Code scaffolding
 
